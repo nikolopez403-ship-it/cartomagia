@@ -1,6 +1,6 @@
 import { getLesson, TYPE_LABEL, TYPE_ICON } from '../data/levels.js';
 import { getProgress, isUnlocked } from '../state.js';
-import { renderImage } from '../illustrations.js';
+import { visualHTML, mountVisuals } from '../visuals.js';
 
 export function renderLesson(id) {
   const l = getLesson(id);
@@ -12,7 +12,7 @@ export function renderLesson(id) {
   const steps = l.steps
     .map(
       (s, i) => `<article class="step" data-step="${i}">
-      <div class="step-img">${renderImage(s.image)}</div>
+      ${visualHTML(s.image)}
       <div class="step-body">
         <span class="step-num">Paso ${i + 1} de ${l.steps.length}</span>
         <h3>${s.title}</h3>
@@ -52,6 +52,7 @@ export function renderLesson(id) {
         <a class="btn primary big" href="#/practica/${l.id}">Practicar con la cámara</a>
       </section>`,
     mount(root) {
+      const stopVisuals = mountVisuals(root);
       const track = root.querySelector('.steps');
       const dots = [...root.querySelectorAll('.dot')];
       const current = () => Math.round(track.scrollLeft / track.clientWidth);
@@ -64,6 +65,7 @@ export function renderLesson(id) {
       root.querySelectorAll('[data-dir]').forEach((b) =>
         b.addEventListener('click', () => go(Math.max(0, Math.min(l.steps.length - 1, current() + +b.dataset.dir)))),
       );
+      return stopVisuals;
     },
   };
 }

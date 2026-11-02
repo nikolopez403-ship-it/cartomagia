@@ -2,7 +2,7 @@
 
 App educativa para aprender **magia con cartas** de forma didáctica y divertida.
 
-- **Camino de niveles**: cada nivel es una técnica, un truco o una rutina, enseñada paso a paso con ilustraciones.
+- **Camino de niveles**: cada nivel es una técnica, un truco o una rutina, enseñada paso a paso con **animaciones** (manos articuladas, subtítulos sincronizados, pausa y cámara lenta).
 - **Práctica con cámara + IA**: la app enciende la cámara, graba tu práctica y la evalúa:
   - **Análisis de manos en el teléfono** (MediaPipe Hand Landmarker, sin internet): presencia de las manos, encuadre, estabilidad, actividad y fluidez del movimiento.
   - **Coach IA opcional** (Claude): revisa fotogramas clave del video según los criterios de la lección y da correcciones concretas.
@@ -24,7 +24,10 @@ En el teléfono, permite "instalar apps de origen desconocido" para instalarlo.
 ```
 src/
   data/levels.js        ← contenido: niveles del camino y objetos de la tienda
-  illustrations.js      ← ilustraciones SVG de cada paso (reemplazables por fotos)
+  anim/engine.js        ← motor de animación (fotogramas clave + reproductor)
+  anim/parts.js         ← mano articulada, cartas, baraja y efectos
+  anim/scenes.js        ← una escena animada por cada paso
+  visuals.js            ← reproductor en la lección (subtítulos, pausa, cámara lenta)
   ai/handTracker.js     ← detección de manos (MediaPipe, en el dispositivo)
   ai/evaluator.js       ← métricas y puntuación local
   ai/coach.js           ← revisión visual con Claude (opcional)
@@ -35,7 +38,7 @@ android/                ← proyecto nativo Capacitor
 
 ### Añadir una lección
 
-Agrega un objeto en `LEVELS` (camino) o `SHOP_ITEMS` (tienda) en `src/data/levels.js`. Para los pasos puedes usar una escena de `illustrations.js` o una foto: coloca la imagen en `public/images/` y usa `image: 'images/mi-foto.jpg'`.
+Agrega un objeto en `LEVELS` (camino) o `SHOP_ITEMS` (tienda) en `src/data/levels.js`. Para los pasos puedes usar una escena animada de `src/anim/scenes.js` o una foto: coloca la imagen en `public/images/` y usa `image: 'images/mi-foto.jpg'`.
 
 El bloque `practice` define cómo evalúa la IA: cuántas manos deben verse, la duración, el modo (`hold` para posiciones quietas, `motion` para movimientos) y los criterios que revisa el coach.
 

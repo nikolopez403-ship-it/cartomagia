@@ -57,7 +57,7 @@ export function renderProfile() {
           <button class="btn ghost" data-coins>+200 monedas</button>
           <button class="btn danger" data-reset>Reiniciar progreso</button>
         </div>
-        <p class="note">Cartomagia v0.1.0 · ${LEVELS.length} niveles de ejemplo</p>
+        <p class="note">Cartomagia v0.2.0 · ${LEVELS.length} niveles de ejemplo</p>
       </section>`,
     mount(root) {
       const rerender = () => window.dispatchEvent(new HashChangeEvent('hashchange'));

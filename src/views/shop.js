@@ -1,6 +1,6 @@
 import { SHOP_ITEMS, TYPE_ICON, TYPE_LABEL } from '../data/levels.js';
 import { buy, getProgress } from '../state.js';
-import { renderImage } from '../illustrations.js';
+import { visualHTML } from '../visuals.js';
 import { toast, confetti } from '../ui.js';
 
 export function renderShop() {
@@ -9,7 +9,7 @@ export function renderShop() {
     const owned = p.owned.includes(s.id);
     const canBuy = p.coins >= s.price;
     return `<article class="shop-card ${owned ? 'owned' : ''}">
-      <div class="shop-img">${renderImage(s.steps[0]?.image)}</div>
+      <div class="shop-img">${visualHTML(s.steps[0]?.image, { interactive: false })}</div>
       <div class="shop-body">
         <span class="chip">${TYPE_ICON[s.type]} ${TYPE_LABEL[s.type]}</span>
         <span class="chip">${'◆'.repeat(s.difficulty)}${'◇'.repeat(3 - s.difficulty)}</span>
