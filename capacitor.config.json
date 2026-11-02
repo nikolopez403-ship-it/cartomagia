@@ -1,0 +1,7 @@
+{
+  "appId": "com.cartomagia.app",
+  "appName": "Cartomagia",
+  "webDir": "dist",
+  "android": { "allowMixedContent": false },
+  "backgroundColor": "#120d1f"
+}

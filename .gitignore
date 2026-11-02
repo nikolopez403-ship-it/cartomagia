@@ -1,0 +1,14 @@
+node_modules/
+dist/
+public/mediapipe/
+*.log
+.DS_Store
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/app/src/main/assets/public/
+android/capacitor-cordova-android-plugins/
+*.apk
+*.keystore
